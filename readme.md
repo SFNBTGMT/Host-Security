@@ -8,7 +8,8 @@ appliquée de manière "invisible", mais devient accessible pour les administrat
 [travail-hs.pdf](https://github.com/user-attachments/files/32908897/travail-hs.pdf)
 
 ## illustration du projet
-<img width="1278" height="814" alt="Image" src="https://github.com/user-attachments/assets/218d6efa-5249-49c6-aa74-fde15a7102aa" />
+<img width="1257" height="821" alt="Image" src="https://github.com/user-attachments/assets/bad2b9b3-21f5-4aca-9342-f7614041807c" />
+
 ---
 
 ##  Architecture de l'Infrastructure
