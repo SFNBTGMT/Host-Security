@@ -1,11 +1,14 @@
 # Host Security - Virtualized Audit Infrastructure
 
-##  Objectif et Contexte du Projet
-Le but de ce projet est de sécuriser un actif critique (un site web statique/hébergé sur le serveur) en appliquant une stratégie de défense en profondeur et un modèle Zero Trust. L'objectif est de démontrer que l'hôte est "durci" (hardened) pour résister aux menaces modernes, comme le piratage de contenu ou l'indisponibilité, tout en permettant une administration distante sécurisée.
+##  Contexte du Projet
+L'entreprise est conçue comme un hébergeur de services où la sécurité n'est pas seulement 
+appliquée de manière "invisible", mais devient accessible pour les administrateurs. 
 
 ## L'énonce du projet
 [travail-hs.pdf](https://github.com/user-attachments/files/32908897/travail-hs.pdf)
 
+## illustration du projet
+<img width="756" height="540" alt="Image" src="https://github.com/user-attachments/assets/15b59619-2466-4ae4-b30b-f23f71696654" />
 ---
 
 ##  Architecture de l'Infrastructure
@@ -17,7 +20,7 @@ Le projet repose sur trois machines virtualisées via **Vagrant**, connectées s
 
 ---
 
-##  Les 5 Piliers de Sécurisation Mis en Place
+##  Les 5 Piliers de Sécurisation Mis en Place :
 Conformément aux critères de l'UE 478, les contrôles suivants sont implémentés :
 
 *   **Identité & Accès (SSH Hardening) :** Désactivation de l'authentification par mot de passe au profit de clés robustes **Ed25519**.
