@@ -1,7 +1,7 @@
 # Host Security - Virtualized Audit Infrastructure
 
 ##  Objectif et Contexte du Projet
-Le but de ce projet est de sécuriser un actif critique (un site web statique/dashboard hébergé sur le serveur) en appliquant une stratégie de défense en profondeur et un modèle Zero Trust. L'objectif est de démontrer que l'hôte est "durci" (hardened) pour résister aux menaces modernes, comme le piratage de contenu ou l'indisponibilité, tout en permettant une administration distante sécurisée.
+Le but de ce projet est de sécuriser un actif critique (un site web statique/hébergé sur le serveur) en appliquant une stratégie de défense en profondeur et un modèle Zero Trust. L'objectif est de démontrer que l'hôte est "durci" (hardened) pour résister aux menaces modernes, comme le piratage de contenu ou l'indisponibilité, tout en permettant une administration distante sécurisée.
 
 ## L'enonce du projet
 
