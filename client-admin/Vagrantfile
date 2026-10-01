@@ -1,0 +1,22 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+  config.vm.hostname = "client-admin"
+  config.vm.network "private_network", ip: "172.28.128.222"
+ 
+  config.vm.provider "virtualbox" do |vb|
+    vb.name   = "client-admin"
+    vb.memory = 2024
+  end
+
+  # --- Installation & configuration DNS locale ---
+  config.vm.provision "shell", inline: <<-'SHELL'
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get install -y lynx borgbackup
+    
+    echo "172.28.128.221 auth.example.com" >> /etc/hosts
+    echo "172.28.128.221 monapp.example.com" >> /etc/hosts
+
+    echo "=== client-admin pret ==="
+  SHELL
+end

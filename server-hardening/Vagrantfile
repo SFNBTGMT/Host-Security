@@ -1,0 +1,110 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+  config.vm.box_version = "20240115.0.0"
+  config.vm.hostname = "server-hardening"
+
+  # --- IP du serveur pour la communication avec les autres VM ---
+  config.vm.network "private_network", ip: "172.28.128.221"
+  
+  # --- dossier partagé local 'http' de '/var/www/monapp' dans la VM ---
+  config.vm.synced_folder "./http", "/var/www/monapp", owner: "www-data", group: "www-data"
+
+  config.vm.provider "virtualbox" do |v|
+      v.name = "server-hardening"
+      v.memory = 2024
+      v.cpus = 1
+  end
+
+  config.vm.provision "shell", inline: <<-'SHELL'
+#!/bin/bash
+set -euo pipefail
+
+ # --- Ajout des entrées DNS dans /etc/hosts ---
+  if ! grep -q "auth.example.com" /etc/hosts; then
+    echo "127.0.0.1 auth.example.com monapp.example.com manager.example.com" >> /etc/hosts
+  fi
+
+echo "INSTALLATION DE BASE SANS DURCISSEMENT"
+
+DEBIAN_FRONTEND=noninteractive apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    nginx \
+    php8.1-fpm \
+    php8.1-mysql \
+    ufw \
+    fail2ban \
+    fish \
+    logwatch \
+    borgbackup
+
+# # --- Nginx Standard (Configuration HTTP de base) ---
+# cat > /etc/nginx/sites-available/demo <<'EOF'
+# server {
+#     listen 80;
+#     server_name _;
+#     root /var/www/demo;
+#     index index.php;
+
+#     location / {
+#         try_files $uri /index.php$is_args$args;
+#     }
+
+#     location ~ \.php$ {
+#         include snippets/fastcgi-php.conf;
+#         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+#     }
+# }
+# EOF
+# rm -f /etc/nginx/sites-enabled/defaul
+# ln -sf /etc/nginx/sites-available/demo /etc/nginx/sites-enabled/demo
+
+# systemctl restart php8.1-fpm nginx
+
+echo "Configuration BorgBackup "
+# Définition du répertoire de dépôt (à adapter selon votre besoin : local ou distant)
+REPOSITORY="/var/backups/borg-repo"
+mkdir -p $REPOSITORY
+
+# Initialisation du dépôt si non existant (avec passphrase définie par une variable d'environnement)
+export BORG_PASSPHRASE="MaPassphraseTresSecrete123"
+if [ ! -f "$REPOSITORY/config" ]; then
+    borg init --encryption=repokey-blake2 $REPOSITORY
+fi
+   
+echo "INSTALLATION DE LEMONLDAP::NG"
+# --- Chargement des packages ---
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https curl gnupg
+curl https://lemonldap-ng.org/lemonldap-debian-packages-pub.gpg | gpg --dearmor > /usr/share/keyrings/lemonldap-debian-packages-pub.gpg
+echo "# LemonLDAP::NG repository" > /etc/apt/sources.list.d/lemonldap-ng.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lemonldap-debian-packages-pub.gpg] https://lemonldap-ng.org/deb 2.0 main" >> /etc/apt/sources.list.d/lemonldap-ng.list
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y lemonldap-ng nginx
+
+# # --- démarrage des services ---
+cd /etc/nginx/sites-enabled
+ln -s ../sites-available/*nginx* . 2>/dev/null || true
+systemctl restart lemonldap-ng-fastcgi-server
+systemctl restart nginx
+
+# # --- Configuration automatique de LemonLDAP::NG ---
+# echo "Configuration du VirtualHost et des règles d'accès"
+# /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set domain example.com
+# /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set cookieName lemonldap
+# # Déclaration obligatoire du VirtualHost avant d'appliquer les règles
+# /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set virtualHosts.monapp.example.com monapp.example.com
+# /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set locationRules.monapp.example.com.default '$uid eq "dwho" or $uid eq "rtyler"'
+# /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set exportedHeaders.monapp.example.com.Auth-User '$uid'
+# /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 update-cache
+# # Mise à jour du cache pour appliquer les modifications
+# rm -f /etc/nginx/sites-enabled/*
+# ln -sf /etc/nginx/sites-available/manager-nginx.conf /etc/nginx/sites-enabled/
+# ln -sf /etc/nginx/sites-available/portal-nginx.conf /etc/nginx/sites-enabled/
+# # Redémarrage propre
+#     systemctl restart llng-fastcgi-server
+#     systemctl restart nginx
+
+echo "=== server-hardening pret ==="
+  SHELL
+  
+end

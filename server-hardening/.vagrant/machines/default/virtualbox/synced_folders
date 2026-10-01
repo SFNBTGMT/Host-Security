@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/monapp":{"owner":"www-data","group":"www-data","guestpath":"/var/www/monapp","hostpath":"C:/Users/soufi/HostSecurity/projet/server-hardening/http","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/soufi/HostSecurity/projet/server-hardening","disabled":false,"__vagrantfile":true}}}
