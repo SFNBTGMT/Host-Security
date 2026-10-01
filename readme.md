@@ -3,10 +3,9 @@
 ##  Objectif et Contexte du Projet
 Le but de ce projet est de sécuriser un actif critique (un site web statique/hébergé sur le serveur) en appliquant une stratégie de défense en profondeur et un modèle Zero Trust. L'objectif est de démontrer que l'hôte est "durci" (hardened) pour résister aux menaces modernes, comme le piratage de contenu ou l'indisponibilité, tout en permettant une administration distante sécurisée.
 
-## L'énonce & Rapport du projet
+## L'énonce du projet
 [travail-hs.pdf](https://github.com/user-attachments/files/32908897/travail-hs.pdf)
-&
-[remiseFinaleTravail.pdf](https://github.com/user-attachments/files/32908997/remiseFinaleTravail.pdf)
+
 ---
 
 ##  Architecture de l'Infrastructure
