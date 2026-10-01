@@ -1,11 +1,13 @@
 # Host Security - Virtualized Audit Infrastructure
 
-## 1. Objectif et Contexte du Projet
+##  Objectif et Contexte du Projet
 Le but de ce projet est de sécuriser un actif critique (un site web statique/dashboard hébergé sur le serveur) en appliquant une stratégie de défense en profondeur et un modèle Zero Trust. L'objectif est de démontrer que l'hôte est "durci" (hardened) pour résister aux menaces modernes, comme le piratage de contenu ou l'indisponibilité, tout en permettant une administration distante sécurisée.
+
+## L'enonce du projet
 
 ---
 
-## 2. Architecture de l'Infrastructure
+##  Architecture de l'Infrastructure
 Le projet repose sur trois machines virtualisées via **Vagrant**, connectées sur le réseau privé **`172.28.128.0/24`** :
 
 *   **`server-hardening` (`172.28.128.221`) :** La cible contenant l'actif (Nginx, PHP 8.1) où les piliers de sécurité sont appliqués.
@@ -14,7 +16,7 @@ Le projet repose sur trois machines virtualisées via **Vagrant**, connectées s
 
 ---
 
-## 3. Les 5 Piliers de Sécurisation Mis en Place
+##  Les 5 Piliers de Sécurisation Mis en Place
 Conformément aux critères de l'UE 478, les contrôles suivants sont implémentés :
 
 *   **Identité & Accès (SSH Hardening) :** Désactivation de l'authentification par mot de passe au profit de clés robustes **Ed25519**.
@@ -25,14 +27,14 @@ Conformément aux critères de l'UE 478, les contrôles suivants sont implément
 
 ---
 
-## 4. Langages & Technologies
+##  Langages & Technologies
 - **Orchestration :** Vagrant & VirtualBox
 - **Services Web :** Nginx, PHP 8.1, LemonLDAP:NG
 - **Sécurité et Scripting :** Bash, BorgBackup, Logwatch
 
 ---
 
-## 5. Déploiement Rapide
+##  Déploiement Rapide
 Pour instancier l'infrastructure complète sur votre machine locale :
 
 1. Assurez-vous d'avoir installé **Vagrant** et **VirtualBox**.
