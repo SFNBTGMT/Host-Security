@@ -1,4 +1,4 @@
-# Host Security - Virtualized Audit Infrastructure
+# Host Security - Virtualized & Infrastructure
 
 ##  Contexte du Projet
 L'entreprise est conçue comme un hébergeur de services où la sécurité n'est pas seulement 
@@ -45,7 +45,5 @@ Pour instancier l'infrastructure complète sur votre machine locale :
 1. Assurez-vous d'avoir installé **Vagrant** et **VirtualBox**.
 2. Clonez le dépôt et démarrez l'ensemble des environnements :
    ```sh
-   git clone https://github.com
-   cd Host-Security
    vagrant up
    ```
