@@ -7,7 +7,7 @@ appliquée de manière "invisible", mais devient accessible pour les administrat
 ## L'énonce du projet
 [travail-hs.pdf](https://github.com/user-attachments/files/32908897/travail-hs.pdf)
 
-## Screencast de Architecture et Stratégies de Hardening Host-Security (UE 478)
+## Screencast Architecture et Stratégies du projet 
 <img width="1190" height="464" alt="Image" src="https://github.com/user-attachments/assets/8b0d0bb2-471f-4b2d-aa16-b31d06ec2412" />
 
 ##  Architecture de l'Infrastructure
