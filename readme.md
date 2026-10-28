@@ -8,8 +8,7 @@ appliquée de manière "invisible", mais devient accessible pour les administrat
 [travail-hs.pdf](https://github.com/user-attachments/files/32908897/travail-hs.pdf)
 
 ## Screencast de Architecture et Stratégies de Hardening Host-Security (UE 478)
-![Image](https://github.com/user-attachments/assets/6dd9c27d-4167-4fc2-b9ff-c42edc68b032)
-
+<img width="1190" height="464" alt="Image" src="https://github.com/user-attachments/assets/8b0d0bb2-471f-4b2d-aa16-b31d06ec2412" />
 
 ##  Architecture de l'Infrastructure
 Le projet repose sur trois machines virtualisées via **Vagrant**, connectées sur le réseau privé **`172.28.128.0/24`** :
