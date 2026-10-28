@@ -9,7 +9,7 @@ appliquée de manière "invisible", mais devient accessible pour les administrat
 
 ## illustration du projet
 https://github.com/user-attachments/assets/4048cb6a-079d-4421-940e-0e11a46b6399 
----
+
 
 ##  Architecture de l'Infrastructure
 Le projet repose sur trois machines virtualisées via **Vagrant**, connectées sur le réseau privé **`172.28.128.0/24`** :
