@@ -8,8 +8,7 @@ appliquée de manière "invisible", mais devient accessible pour les administrat
 [travail-hs.pdf](https://github.com/user-attachments/files/32908897/travail-hs.pdf)
 
 ## illustration du projet
-<img width="3723" height="8541" alt="Image" src="https://github.com/user-attachments/assets/30e66b26-7483-4d20-9e42-37ffee834ee2" />
----
+https://github.com/user-attachments/assets/4048cb6a-079d-4421-940e-0e11a46b6399 ---
 
 ##  Architecture de l'Infrastructure
 Le projet repose sur trois machines virtualisées via **Vagrant**, connectées sur le réseau privé **`172.28.128.0/24`** :
